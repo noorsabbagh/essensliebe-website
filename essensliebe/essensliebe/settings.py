@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'webapp',
     'login',
+    'signup',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
