@@ -1,9 +1,7 @@
-{% load staticfiles %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="{% static 'webapp/style.css' %}"/>
-<html>
-<header>
-        <h1 class="text-center">Login</h1>
+{% extends "base.html" %}
+{% block title %} Index {% endblock %}
+{% block content %}
+<h1 class="text-center">Login</h1>
     <div class="col-sm-4 col-sm-offset-5">         
         <form class="" action="" method="post" enctype="multipart/form-data">
             <div class="form-group"><label for="">
@@ -17,5 +15,4 @@
             </div>
         </form>
     </div>  
-</header>
-</html>
+{% endblock %}
