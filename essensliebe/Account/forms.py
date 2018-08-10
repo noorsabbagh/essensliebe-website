@@ -1,5 +1,6 @@
 from django import forms
-from django.contrib.auth import authenticate, get_user_model, login,logout
+from users.models import User
+from django.contrib.auth import authenticate, get_user_model, login, logout
 
 class UserLoginForm(forms.Form):
     username = forms.CharField()
@@ -18,3 +19,25 @@ class UserLoginForm(forms.Form):
                 raise forms.ValidationError("This user is no longer active.")
         return super(UserLoginForm, self).clean(*args, **kwargs)
 
+class UserRegistrationForm(forms.ModelForm):
+    email = forms.EmailField(label="Email address")
+    email2 = forms.EmailField(label="Confirm Email")
+    password = forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model = User
+        fields = {
+            'firstname',
+            'lastname'
+            'username',
+            'email',
+            'password'
+        }
+
+    def clean_email2(self):
+        email = self.cleaned_data.get('email')
+        email2 = self.cleaned_data.get('email2')
+        if email != email2:
+            raise forms.ValidationError("Emails must match")
+            email_qs = User.objects.filter(email=email)
+            if email_qs.exist():
+                raise forms.ValidationError("This email has already been registered")
