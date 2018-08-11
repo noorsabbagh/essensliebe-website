@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, get_user_model, login, logout
 from .forms import UserLoginForm, UserRegistrationForm
 # Create your views here.
 def register_view(request):
-    print(request.user.is_authenticated())
+    #print(request.user.is_authenticated())
     title = "Register"
     form = UserRegistrationForm(request.POST or None)
     if form.is_valid():
