@@ -1,5 +1,6 @@
 from django import forms
-from user.models import User
+#from user.models import User
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, get_user_model, login, logout
 
 class UserLoginForm(forms.Form):
