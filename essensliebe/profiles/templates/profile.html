@@ -3,10 +3,11 @@
 {% block content %}
 <div class="container">
     <h2>{{user}}</h2>
-    <img class="profile_pic" src="{{user.picture.url}}">
-    <p>{{user.location}}</p>
+    <img class="profile_image" src="{{user.picture.url}}">
+    <p>{{user.profile.location}}</p>
     <p>First Name: {{user.first_name}}</p>
     <p>Last Name: {{user.last_name}}</p>
     <p>Email: {{user.email}}</p>
+    <img src="{{ user.userprofile }}" width:"240" >
 </div>
 {% endblock %}
