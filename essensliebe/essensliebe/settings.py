@@ -126,5 +126,6 @@ USE_TZ = True
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+MDEIA_ROOT = os.path.join(BASE_DIR)
 MDEIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", "media_root")
 

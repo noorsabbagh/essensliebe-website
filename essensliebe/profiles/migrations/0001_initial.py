@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('sex', models.CharField(blank=True, max_length=10, null=True)),
                 ('favorite_food', models.CharField(blank=True, max_length=255, null=True)),
                 ('description', models.CharField(blank=True, max_length=500, null=True)),
-                ('picture', models.ImageField(blank=True, null=True, upload_to='profile_images')),
+                ('picture', models.ImageField(blank=True, null=True, upload_to='profile_image')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

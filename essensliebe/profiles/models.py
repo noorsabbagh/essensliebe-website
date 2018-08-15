@@ -10,7 +10,7 @@ class Profile(models.Model):
     sex = models.CharField(max_length=10, null=True, blank=True)
     favorite_food = models.CharField(max_length=255, null=True, blank=True)
     description = models.CharField(max_length=500, null=True, blank=True)
-    picture = models.ImageField(upload_to="profile_image", null=True, blank=True)
+    picture = models.ImageField(upload_to="profile_image/", default="/media/profile_image/def_image.png")
 
 def create_profile(sender, **kwargs):
 	if kwargs ['created']:
