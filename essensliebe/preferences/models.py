@@ -1,5 +1,5 @@
 from django.db import models
-from djang.contrib import settings
+from django.conf import settings
 
 # Create your models here.
 class Questions(models.Model):
