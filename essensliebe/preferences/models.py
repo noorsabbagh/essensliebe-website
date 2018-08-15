@@ -1,4 +1,5 @@
 from django.db import models
+from djang.contrib import settings
 
 # Create your models here.
 class Questions(models.Model):
@@ -11,7 +12,7 @@ class Questions(models.Model):
         return self.text
 
 class Answer(models.Model):
-    question = models.ForeignKey(Questions, on_delete=models.CASCADE)
+    question = models.OneToOneField(Questions, on_delete=models.CASCADE)
     text = models.CharField(max_length=120)
     active = models.BooleanField(default=True)
     draft = models.BooleanField(default=False)
@@ -19,3 +20,11 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.text
+
+class UserAnswer(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    question = models.ForeignKey(Questions, on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.answer
