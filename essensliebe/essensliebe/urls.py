@@ -20,7 +20,7 @@ from profiles.views import profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('webapp.urls')),
+    path('index/', include('webapp.urls')),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
     path('register/', register_view, name='register'),
