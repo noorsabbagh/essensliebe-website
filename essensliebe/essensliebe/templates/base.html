@@ -1,6 +1,5 @@
-{% load staticfiles %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+{% include "scripts.html" %}
+
 
 <html lang="en">
 <head>
@@ -21,6 +20,17 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
+                        {% if request.user.is_authenticated %}
+                        <li>
+                            <a href="/index/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/logout/">Logout</a>
+                        </li>
+                        <li>
+                            <a href="/profile/">Profile</a>
+                        </li>
+                        {% else %}
                         <li>
                             <a href="/index/">Home</a>
                         </li>
@@ -30,6 +40,7 @@
                         <li>
                             <a href="/register/">Register</a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
