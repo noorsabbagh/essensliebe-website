@@ -18,6 +18,7 @@ Importance: {{ form.importance_level }}
 {% for ans in instance.answer_set.all %}
 <input type='radio' name='partner_answer_id' value='{{ ans.id }}'/> {{ ans.text }}<br/>
 {% endfor %}
+<input type='radio' name='partner_answer_id' value='-1'/> Not Important<br/>
 
 <br/>
 Importance: {{ form.partner_importance_level }} <br/><br/>
