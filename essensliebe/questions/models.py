@@ -39,4 +39,4 @@ class UserAnswer(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
-        return self.my_answer
+        return self.my_answer.text
