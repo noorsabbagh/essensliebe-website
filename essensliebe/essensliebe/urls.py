@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from account.views import (login_view, register_view, logout_view)
 from profiles.views import profile, edit_profile, edit_food_prefrences, edit_partner_prefrences, prefrences
-from questions.views import question_view
+from questions.views import questions_view
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -27,7 +27,7 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
     path('register/', register_view, name='register'),
-    path('questions/', question_view, name='questions'),
+    path('questions/', questions_view, name='questions'),
     path('profile/', profile, name='profile'),
     path('profile/edit', edit_profile, name='edit_profile'),
     path('profile/prefrences', prefrences, name='prefrences'),
