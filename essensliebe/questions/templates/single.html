@@ -16,12 +16,12 @@ Importance: {{ form.importance_level }}
 
 <h3>Your Partner's answer</h3>
 {% for ans in instance.answer_set.all %}
-<input type='radio' name='partner_answer_id' value='{{ ans.id }}'/> {{ ans.text }}<br/>
+<input type='radio' name='their_answer_id' value='{{ ans.id }}'/> {{ ans.text }}<br/>
 {% endfor %}
-<input type='radio' name='partner_answer_id' value='-1'/> Not Important<br/>
+<input type='radio' name='their_answer_id' value='-1'/> Not Important<br/>
 
 <br/>
-Importance: {{ form.partner_importance_level }} <br/><br/>
+Importance: {{ form.their_importance_level }} <br/><br/>
 
 
 <input type='submit' value='Save and continue'/>
