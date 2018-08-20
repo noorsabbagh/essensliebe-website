@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from account.views import (login_view, register_view, logout_view)
 from profiles.views import profile, edit_profile, edit_food_prefrences, edit_partner_prefrences, prefrences
-from questions.views import questions_view
+from questions.views import questions_view, single
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('register/', register_view, name='register'),
     path('questions/', questions_view, name='questions'),
+    path('questions/<int:id>/', single, name='questions_single'),
     path('profile/', profile, name='profile'),
     path('profile/edit', edit_profile, name='edit_profile'),
     path('profile/prefrences', prefrences, name='prefrences'),
