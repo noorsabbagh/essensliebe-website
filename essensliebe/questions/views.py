@@ -9,7 +9,7 @@ def single(request, id):
         form = UserResponseForm(request.POST or None)
         if form.is_valid():
             print(form.cleaned_data)
-            print(request.POST)
+            #print(request.POST)
             answer_id = form.cleaned_data.get('answer_id')
             question_id = form.cleaned_data.get('question_id')
             question_instance = Question.objects.get(id=question_id)
