@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'account',
     'profiles',
     'questions',
+    'matches',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
