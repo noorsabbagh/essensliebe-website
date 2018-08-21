@@ -29,5 +29,8 @@ class UserResponseForm(forms.Form):
         try:
             obj = Answer.objects.get(id=their_answer_id)
         except:
-            raise forms.ValidationError('There was an error with the answer you have provided for them. Please retry.')
+            if their_answer_id == -1:
+                return their_answer_id
+            else:
+                raise forms.ValidationError('There was an error with the answer you have provided for them. Please retry.')
         return their_answer_id
