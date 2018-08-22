@@ -1,13 +1,27 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm
+from .models import Profile
+from matches.models import Match
 from .forms import EditProfileForm, EditPartnerPrefrencesForm, EditFoodPrefrencesForm
 # Create your views here.
-def profile(request):
-    args = {'user':request.user}
-    return render(request, 'profile.html', args)
+User = get_user_model()
 
-def edit_profile(request):
+@login_required
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
+    matches, match_created = Match.objects.get_or_create_match(user_a=request.user, user_b=user)
+    profile, created = Profile.objects.get_or_create(user=user)
+    args = {
+        'profile':profile, 
+        'matches':matches,
+    }
+    return render(request, 'profile.html', args)
+    
+
+def edit_profile(request, username):
     if request.method == 'POST':
         form = EditProfileForm(data=request.POST or None, instance=request.user.profile, files=request.FILES)
 
