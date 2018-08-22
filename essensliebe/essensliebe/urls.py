@@ -21,6 +21,7 @@ from questions.views import questions_view, single
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
+from matches.views import matches_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,11 +31,12 @@ urlpatterns = [
     path('register/', register_view, name='register'),
     path('questions/', questions_view, name='questions'),
     path('questions/<int:id>/', single, name='questions_single'),
-    path('profile/', profile, name='profile'),
-    path('profile/edit', edit_profile, name='edit_profile'),
+    path('profile/<str:username>/', profile, name='profile'),
+    path('profile/edit/', edit_profile, name='edit_profile'),
     path('profile/prefrences', prefrences, name='prefrences'),
     path('profile/prefrences/partner', edit_partner_prefrences, name='edit_partner_prefrences'),
     path('profile/prefrences/food', edit_food_prefrences, name='edit_food_prefrences'),
+    path('matches/', matches_view, name='matches_view'), 
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
