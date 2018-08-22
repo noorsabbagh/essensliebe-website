@@ -31,7 +31,7 @@ def login_view(request):
         password = form.cleaned_data.get('password')
         user = authenticate(username=username, password=password)
         login(request,user)
-        return redirect('/profile/')
+        return redirect(request.user.profile.get_absolute_url)
     return render(request, "form.html", {"form":form, "title": title})
 
 def logout_view(request):
