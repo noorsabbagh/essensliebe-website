@@ -32,10 +32,10 @@ urlpatterns = [
     path('questions/', questions_view, name='questions'),
     path('questions/<int:id>/', single, name='questions_single'),
     path('profile/<str:username>/', profile, name='profile'),
-    path('profile/edit/', edit_profile, name='edit_profile'),
-    path('profile/prefrences', prefrences, name='prefrences'),
-    path('profile/prefrences/partner', edit_partner_prefrences, name='edit_partner_prefrences'),
-    path('profile/prefrences/food', edit_food_prefrences, name='edit_food_prefrences'),
+    path('profile/<str:username>/edit/', edit_profile, name='edit_profile'),
+    path('profile/<str:username>/prefrences', prefrences, name='prefrences'),
+    path('profile/<str:username>/prefrences/partner', edit_partner_prefrences, name='edit_partner_prefrences'),
+    path('profile/<str:username>/prefrences/food', edit_food_prefrences, name='edit_food_prefrences'),
     path('matches/', matches_view, name='matches_view'), 
 
 

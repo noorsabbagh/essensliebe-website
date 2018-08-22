@@ -27,7 +27,7 @@ def edit_profile(request, username):
 
         if form.is_valid():
             form.save()
-            return redirect('/profile')
+            return redirect('/profile/' + str(username))
 
     else:
         form = EditProfileForm(instance=request.user.profile)
