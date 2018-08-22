@@ -2,20 +2,21 @@
 {% block title %} Profile {% endblock %}
 {% block content %}
 <div class="container">
-    <h2>{{user}}</h2>
+    <h2>{{profile.user}}</h2>
     <img class="profile_image" src="{{user.profile.picture.url}}">
     <br><br>
-    <a href="/profile/edit" class="btn btn-primary active">Edit profile</a>
+    <a href="/profile/{{profile.user.username}}/edit" class="btn btn-primary active">Edit profile</a>
     <a href="/profile/prefrences" class="btn btn-primary active">Edit prefrences</a>
     <br><br>
 
-    <p>Location: {{user.profile.location}}</p>
-    <p>Age: {{user.profile.age}}</p>
-    <p>Sex: {{user.profile.sex}}</p>
-    <p>First Name: {{user.first_name}}</p>
-    <p>Last Name: {{user.last_name}}</p>
-    <p>Ethnicity: {{user.profile.ethnicity}}</p>
-    <p>Description: {{user.profile.description}}</p>
+    <p>Match: {{matches.get_percent}}</p>
+    <p>Location: {{profile.location}}</p>
+    <p>Age: {{profile.age}}</p>
+    <p>Sex: {{profile.sex}}</p>
+    <p>First Name: {{profile.user.first_name}}</p>
+    <p>Last Name: {{profile.user.last_name}}</p>
+    <p>Ethnicity: {{profile.ethnicity}}</p>
+    <p>Description: {{profile.description}}</p>
 
 </div>
 {% endblock %}
