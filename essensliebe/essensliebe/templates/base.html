@@ -28,10 +28,13 @@
                             <a href="/logout/">Logout</a>
                         </li>
                         <li>
-                            <a href="/profile/">Profile</a>
+                            <a href="{{request.user.profile.get_absolute_url}}">Profile</a>
                         </li>
                         <li>
-                            <a href="/questions/">Questions</a>
+                            <a href="/questions/1">Questions</a>
+                        </li>
+                        <li>
+                            <a href="/matches/">Matches</a>
                         </li>
                         {% else %}
                         <li>
