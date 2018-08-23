@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+        <div class="row">
+                <div class="col-md-3">
+                    <br>
+                    <br>
+                    <a href="#" class="list-group-item">Home</a>
+                    <a href="/profile/edit" class="list-group-item">Edit Profile</a>
+                    <a href="/profile/prefrences" class="list-group-item">Edit Prefrences</a>
+                    {% if 'message' in request.get_full_path %}
+                    <a href="/directmessage/inbox" class="list-group-item">{% if not request.session.num_of_message == 0 %}<span class='badge pull-right'>{{ request.session.num_of_message }}</span>{% endif %}Inbox</a>
+                    <a href="/directmessage/compose" class="list-group-item">Compose</a>
+                    <a href="/directmessage/sent" class="list-group-item">Sent</a>
+                    {% endif %}
+                    <a href="#" class="list-group-item">Matchmaker</a>
+                </div>
+
+                <div class='col-lg-7'>
+
+   
+<table class="table table-striped">
+    <thead>
+    <th>From</th><th>Subject</th>
+</thead>
+    <tbody>
+            {% for item in messages_in_inbox %}
+        <tr>
+            <td>
+                {{ item.sender }}
+            </td>
+            <td>
+                {% if item.read %}
+                    <span style="color: gray;" class='glyphicon glyphicon-ok'></span>
+                {% endif %}
+
+             <a {% if item.read %} style="color: gray;" {% endif %}href="{{ item.get_obsolute_url }}" > {{item.subject|truncatewords:10 }} </a>
+             {% if item.sent %} <small>{{ item.sent }}</small> {% endif %} 
+             </td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+
+
+{% endblock%}
