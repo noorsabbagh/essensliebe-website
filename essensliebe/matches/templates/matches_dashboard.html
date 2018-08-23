@@ -17,9 +17,9 @@
                               <h5 class="text-info">{{percent}}</h5>
                               <h5 class="text-info">{{match_user.first_name}} {{match_user.last_name}}</h5>
                               <h5 class="text-info">{{match_user.profile.location}}</h5>
-                              <br/>
-                            <p class="text-left m-0"><a href="{{match_user.profile.get_absolute_url}}" class="btn btn-primary"><i class="far fa-user"></i> View Profile</a></p>
+                            <a href="{{match_user.profile.get_absolute_url}}" class="btn btn-primary"><i class="far fa-user"></i> View Profile</a>                            
                     </div>
+                    <br/>
                 </div>
             </div>
             {% endfor %}
