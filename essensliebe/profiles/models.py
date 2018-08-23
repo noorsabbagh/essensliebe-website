@@ -20,6 +20,10 @@ class Profile(models.Model):
         url = reverse("profile", kwargs={"username": self.user.username})
         return url
 
+    def like_link(self):
+        url = reverse("like_user", kwargs={"id": self.user.id})
+        return url
+
 def create_profile(sender, **kwargs):
 	if kwargs ['created']:
 	  profile = Profile.objects.create(user=kwargs ['instance'])
