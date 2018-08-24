@@ -11,7 +11,7 @@ class Profile(models.Model):
     age = models.IntegerField(null=True, blank=True)
     ethnicity = models.CharField(max_length=10, null=True, blank=True)
     description = models.CharField(max_length=500, null=True, blank=True)
-    picture = models.ImageField(upload_to="profile_image/", default="/media/profile_image/def_image.png")
+    picture = models.ImageField(upload_to="media/profile_image/", default="media/profile_image/def_image.png")
 
     def __str__(self):
         return self.user.username 
