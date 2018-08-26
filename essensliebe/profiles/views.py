@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
@@ -6,7 +6,11 @@ from django.contrib.auth.forms import UserChangeForm
 from .models import Profile
 from likes.models import UserLike
 from matches.models import Match
+from django.urls import reverse
+from django.contrib.auth.models import User
+import datetime
 from .forms import EditProfileForm, EditPartnerPrefrencesForm, EditFoodPrefrencesForm
+from directmessage.forms import ComposeForm
 # Create your views here.
 User = get_user_model()
 
@@ -71,3 +75,16 @@ def edit_food_prefrences(request, username):
         form = EditFoodPrefrencesForm(instance=request.user.food_prefrences)
         args = {'form': form}
         return render(request, 'edit_food_prefrences.html', args)
+
+def user_compose(request, user_id):
+    user = User.objects.get(id=user_id)
+    form = ComposeForm(request.POST or None)
+    if form.is_valid():
+        send_message = form.save(commit=False)
+        send_message.sender = request.user
+        send_message.receiver = user
+        send_message.sent = datetime.datetime.now()
+        send_message.save()
+        return HttpResponseRedirect(reverse('inbox'))
+
+    return render(request, 'user_compose.html', locals())

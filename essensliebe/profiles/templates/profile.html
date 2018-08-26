@@ -18,6 +18,7 @@
                     <a href="#" class="list-group-item">Matchmaker</a>
             </div>
         </div>
+
 <div class="container">
         <div class="row">
                 <div class="col-md-3">
@@ -26,7 +27,7 @@
     <br><br>
     {% if profile.user != request.user %}
     {% if mutual_like %}
-    <a href="#" class="btn btn-primary active">Chat</a>
+    <a href="/profile/{{profile.id}}/user_compose" class="btn btn-primary active">Message</a>
     <br><br>
     {% else %}
     <a href="{{ profile.like_link }}" class="btn btn-danger active">{% if do_i_like %}Unlike{% else %}Like{% endif %}</a>
@@ -49,6 +50,9 @@
     <p>Ethnicity: {{profile.ethnicity}}</p>
     <p>Description: {{profile.description}}</p>
 
+
+
+    
 </div>
 </div>
 
