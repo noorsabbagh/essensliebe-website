@@ -5,7 +5,7 @@ class ComposeForm(forms.ModelForm):
 
     class Meta:
         model = DirectMessage
-        fields = ('receiver', 'subject', 'body')
+        fields = ('subject', 'body')
         widgets = {
                 'body': forms.Textarea(attrs={'cols':80, 'row': 20}),
             }
