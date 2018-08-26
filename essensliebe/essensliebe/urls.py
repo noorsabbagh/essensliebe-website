@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from account.views import (login_view, register_view, logout_view)
-from profiles.views import profile, edit_profile, edit_food_prefrences, edit_partner_prefrences, prefrences
+from profiles.views import profile, edit_profile, edit_food_prefrences, edit_partner_prefrences, prefrences, user_compose
 from questions.views import questions_view, single
 from directmessage.views import inbox, sent, compose, view_direct_message, reply
 from django.conf import settings
@@ -40,6 +40,7 @@ urlpatterns = [
     path('directmessage/view/<int:dm_id>/reply/', reply, name='reply'),
     path('profile/<str:username>/', profile, name='profile'),
     path('profile/<str:username>/edit/', edit_profile, name='edit_profile'),
+    path('profile/<int:user_id>/user_compose', user_compose, name='user_compose'),
     path('profile/<str:username>/prefrences', prefrences, name='prefrences'),
     path('profile/<str:username>/prefrences/partner', edit_partner_prefrences, name='edit_partner_prefrences'),
     path('profile/<str:username>/prefrences/food', edit_food_prefrences, name='edit_food_prefrences'),
