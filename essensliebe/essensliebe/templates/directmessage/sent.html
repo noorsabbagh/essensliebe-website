@@ -10,18 +10,28 @@
                     <a href="/profile/prefrences" class="list-group-item">Edit Prefrences</a>
                     {% if 'message' in request.get_full_path %}
                     <a href="/directmessage/inbox" class="list-group-item">{% if not request.session.num_of_message == 0 %}<span class='badge pull-right'>{{ request.session.num_of_message }}</span>{% endif %}Inbox</a>
-                    <a href="/directmessage/compose" class="list-group-item">Compose</a>
                     <a href="/directmessage/sent" class="list-group-item">Sent</a>
                     {% endif %}
                     <a href="#" class="list-group-item">Matchmaker</a>
                 </div>
                 <div class='col-lg-7'>
 
+                        <table class="table table-striped">
+                                <thead>
+                                <th>From</th><th>Subject</th>
+                            </thead>
+                                <tbody>    
 {% for item in messages_sent %}
-
-<h3>{{ item }} <small>To: {{ item.receiver }} on {{ item.sent }}</small></h3><br/>
-
+<tr>
+        <td>
+{{ item }} <small>To: {{ item.receiver }} on {{ item.sent }}</small><br/>
+</td>
+<td>
     {{ item.body }}
+</td>
+</tr>
 {% endfor%}
+</tbody>
+</table>
 
 {% endblock%}

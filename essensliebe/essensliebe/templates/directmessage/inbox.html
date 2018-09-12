@@ -10,7 +10,6 @@
                     <a href="/profile/prefrences" class="list-group-item">Edit Prefrences</a>
                     {% if 'message' in request.get_full_path %}
                     <a href="/directmessage/inbox" class="list-group-item">{% if not request.session.num_of_message == 0 %}<span class='badge pull-right'>{{ request.session.num_of_message }}</span>{% endif %}Inbox</a>
-                    <a href="/directmessage/compose" class="list-group-item">Compose</a>
                     <a href="/directmessage/sent" class="list-group-item">Sent</a>
                     {% endif %}
                     <a href="#" class="list-group-item">Matchmaker</a>
