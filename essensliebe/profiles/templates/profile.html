@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %} Profile {% endblock %}
 {% block content %}
+
 <div class="container">
 
     <div class="row">
@@ -28,9 +29,11 @@
     {% if profile.user != request.user %}
     {% if mutual_like %}
     <a href="/profile/{{profile.id}}/user_compose" class="btn btn-primary active">Message</a>
+    <a href="/profile/37/user_compose" class="btn btn-primary active">Report</a>
     <br><br>
     {% else %}
     <a href="{{ profile.like_link }}" class="btn btn-danger active">{% if do_i_like %}Unlike{% else %}Like{% endif %}</a>
+    <a href="/profile/37/user_compose" class="btn btn-primary active">Report</a>
     <br><br>
     {% endif %}
     {% endif %}
