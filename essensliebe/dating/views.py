@@ -14,7 +14,7 @@ def date_view(request):
 
     user_location = request.user.profile.location
     city_ID = zomato.get_city_ID(user_location)
-    collections = zomato.get_cuisines(city_ID)
+    collections = zomato.get_collections(city_ID)
 
     cuisines = json.dumps(collections, indent=4, sort_keys=True)
     context = {
