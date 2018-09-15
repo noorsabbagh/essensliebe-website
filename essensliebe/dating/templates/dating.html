@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% block title %} Profile {% endblock %}
 {% block content %}
-<link rel="stylesheet" href="styles.css">
 <div class="container">
     <h2>List of cuisines in {{request.user.profile.location}}</h2>
-        <p>{{cuisines}}/n</p>
+        <p>{{cuisines}}</p>
 </div>
 {% endblock %}
