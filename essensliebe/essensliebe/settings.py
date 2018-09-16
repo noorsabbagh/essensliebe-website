@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'directmessage',
     'matches',
     'likes',
+    'report',
     'dating',
     'django.contrib.admin',
     'django.contrib.auth',

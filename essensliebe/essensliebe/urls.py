@@ -25,6 +25,8 @@ from django.conf.urls import url
 from matches.views import matches_view
 from likes.views import like_user
 from dating.views import date_view
+from report.views import report_user
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,7 +42,8 @@ urlpatterns = [
     path('directmessage/view/<int:dm_id>/', view_direct_message, name='view_direct_message'),
     path('directmessage/view/<int:dm_id>/reply/', reply, name='reply'),
     path('profile/<str:username>/', profile, name='profile'),
-    path('profile/<str:username>/edit/', edit_profile, name='edit_profile'),
+    path('report/<int:user_id><str:username>/report_user', report_user, name='report_user'),
+    path('profile/<int:user_id>/edit/', edit_profile, name='edit_profile'),
     path('profile/<int:user_id>/user_compose', user_compose, name='user_compose'),
     path('profile/<str:username>/prefrences', prefrences, name='prefrences'),
     path('profile/<str:username>/prefrences/partner', edit_partner_prefrences, name='edit_partner_prefrences'),
