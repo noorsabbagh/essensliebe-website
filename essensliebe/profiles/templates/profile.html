@@ -29,14 +29,14 @@
     {% if profile.user != request.user %}
     {% if mutual_like %}
     <a href="/profile/{{profile.id}}/user_compose" class="btn btn-primary active">Message</a>
-    <a href="/profile/37/user_compose" class="btn btn-primary active">Report</a>
+    <a href="/report/{{profile.id}}{{profile.user}}/report_user" class="btn btn-primary active">Report</a>
     <br><br>
     {% else %}
     <a href="{{ profile.like_link }}" class="btn btn-danger active">{% if do_i_like %}Unlike{% else %}Like{% endif %}</a>
-    <a href="/profile/37/user_compose" class="btn btn-primary active">Report</a>
+    <a href="/report/{{profile.id}}{{profile.user}}/report_user" class="btn btn-primary active">Report</a>
     <br><br>
     {% endif %}
-    {% endif %}
+    {% endif %} 
     {% if profile.user == request.user %}
     <a href="/profile/{{profile.user.username}}/edit" class="btn btn-primary active">Edit profile</a>
     <a href="/profile/prefrences" class="btn btn-primary active">Edit prefrences</a>
