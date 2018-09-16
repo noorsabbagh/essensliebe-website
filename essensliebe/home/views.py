@@ -4,6 +4,7 @@ from django.template import loader
 from matches.models import Match
 
 
+
 # Create your views here.
 def index(request):
     return render(request, 'home/index.html')
@@ -14,5 +15,5 @@ def matches_view(request):
         context = {
             "matches": matches,
         }
-        return render(request, "matches_dashboard.html", context)
+        return render(request, "index.html", context)
     return render(request, "index", context)
