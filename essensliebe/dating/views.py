@@ -15,10 +15,11 @@ def date_view(request):
     user_location = request.user.profile.location
     city_ID = zomato.get_city_ID(user_location)
     collections = zomato.get_collections(city_ID)
-
-    cuisines = json.dumps(collections, indent=4, sort_keys=True)
+    print(type(collections))
+    meme =  collections
     context = {
-        'cuisines': cuisines,
+        'meme': meme
     }
-
+		
+ 
     return render(request, 'dating.html', context)

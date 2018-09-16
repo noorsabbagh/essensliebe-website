@@ -96,7 +96,7 @@ class Zomato:
 
         collections = {}
         for collection in a['collections']:
-            collections.update({collection['collection']['title'] : collection['collection']['url'], collection['collection']['description'] : collection['collection']['image_url'] })
+            collections.update({collection['collection']['title'] : collection['collection']['url'] })
 
         return collections
 
