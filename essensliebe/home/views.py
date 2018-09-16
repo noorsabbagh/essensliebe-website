@@ -6,7 +6,7 @@ from matches.models import Match
 
 # Create your views here.
 def index(request):
-    return render(request, 'webapp/index.html')
+    return render(request, 'home/index.html')
 	
 def matches_view(request):
     if request.user.is_authenticated:

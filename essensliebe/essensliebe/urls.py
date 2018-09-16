@@ -28,7 +28,7 @@ from dating.views import date_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', include('webapp.urls')),
+    path('index/', include('home.urls')),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
     path('register/', register_view, name='register'),
