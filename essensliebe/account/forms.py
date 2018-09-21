@@ -42,3 +42,8 @@ class UserRegistrationForm(forms.ModelForm):
             email_qs = User.objects.filter(email=email)
             if email_qs.exist():
                 raise forms.ValidationError("This email has already been registered")
+            if not "@" in email:
+                raise forms.ValidationError("Please make sure you are using the correct conventions when filling out your email (example@gmail.com)")
+
+  
+        

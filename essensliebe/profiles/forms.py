@@ -17,6 +17,7 @@ class EditProfileForm(forms.ModelForm):
             'picture'
 
         )
+	
       
 
 class EditPartnerPrefrencesForm(forms.ModelForm):
@@ -37,3 +38,16 @@ class EditFoodPrefrencesForm(forms.ModelForm):
             'vegan',
             'vegetarian'
         )
+
+    
+        def clean_age(self):
+		        age = self.cleaned_data.get(age)
+		        if not 18<= age <=112:
+		            raise forms.ValidationError ("Your age must be a identified by a number between 18 and 112")
+
+        def clean_sex(self):
+                sex = self.clean_data.get(sex)
+                if not "male" or "female" or "other" in sex:
+                    raise forms.ValidationError ("Your Sex must be identified in lower case male, female, or other")  
+
+        
