@@ -44,6 +44,7 @@ class UserRegistrationForm(forms.ModelForm):
                 raise forms.ValidationError("This email has already been registered")
             if not "@" in email:
                 raise forms.ValidationError("Please make sure you are using the correct conventions when filling out your email (example@gmail.com)")
-
+            if not ".com" in email:
+                raise forms.ValidationError("Please make sure you are using the correct conventions when filling out your email (example@gmail.com)")
   
         
