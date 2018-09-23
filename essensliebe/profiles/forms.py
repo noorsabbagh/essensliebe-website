@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import Profile, PartnerPrefrences, FoodPrefrences
 from django.contrib.auth.forms import UserChangeForm
 from directmessage.models import DirectMessage
-
+import re
 class EditProfileForm(forms.ModelForm):
 
     class Meta:
@@ -49,5 +49,8 @@ class EditFoodPrefrencesForm(forms.ModelForm):
                 sex = self.clean_data.get(sex)
                 if not "male" or "female" or "other" in sex:
                     raise forms.ValidationError ("Your Sex must be identified in lower case male, female, or other")  
-
-        
+        def clean_location(self):
+                location = self.clean_data.get(location)
+                location = re.search(r'[A-Za-z]', location)
+                
+                    
