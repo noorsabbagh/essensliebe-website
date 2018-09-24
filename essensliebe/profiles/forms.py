@@ -52,5 +52,8 @@ class EditFoodPrefrencesForm(forms.ModelForm):
         def clean_location(self):
                 location = self.clean_data.get(location)
                 location = re.search(r'[A-Za-z]', location)
+        def clean_ethnicity(self):
+                ethnicity = self.clean_data.get(ethnicity)
+                ethnicity = re.search(r'[A-Za-z]', ethnicity)
                 
                     

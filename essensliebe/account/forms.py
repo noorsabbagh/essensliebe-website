@@ -2,7 +2,7 @@ from django import forms
 #from user.models import User
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, get_user_model, login, logout
-
+import re
 class UserLoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
@@ -46,5 +46,9 @@ class UserRegistrationForm(forms.ModelForm):
                 raise forms.ValidationError("Please make sure you are using the correct conventions when filling out your email (example@gmail.com)")
             if not ".com" in email:
                 raise forms.ValidationError("Please make sure you are using the correct conventions when filling out your email (example@gmail.com)")
-  
-        
+    def clean_first_name(self):
+                first_name = self.clean_data.get(first_name)
+                first_name = re.search(r'[A-Za-z]', first_name)
+    def clean_last_name(self):
+                last_name = self.clean_data.get(last_name)
+                last_name = re.search(r'[A-Za-z]',last_name)
