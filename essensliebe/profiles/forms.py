@@ -5,19 +5,31 @@ from django.contrib.auth.forms import UserChangeForm
 from directmessage.models import DirectMessage
 import re
 class EditProfileForm(forms.ModelForm):
-
+    age = forms.IntegerField(required=True,widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[0-9 ]+', 'title':'Enter Characters Only '}))
+    sex = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[A-Za-z ]+', 'title':'Enter Characters Only '}))
+    age = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[A-Za-z ]+', 'title':'Enter Characters Only '}))
     class Meta:
         model = Profile
-        fields = (
+        fields = {
             'location',
             'sex',
             'age',
             'ethnicity',
             'description',
             'picture'
-
-        )
-	
+        }   
+        
+        def clean_age(self):
+            age = self.cleaned_data.get('age')
+            if not 18<= age >=112:
+                raise forms.ValidationError ("Your age must be a identified by a number between 18 and 112")
+            
+            return age
+        def clean_sex(self):
+            sex = self.clean_data.get('sex')
+            if not "male" or "female" or "other" in 'sex':
+                    raise forms.ValidationError ("Your Sex must be identified in lower case male, female, or other")
+            return sex
       
 
 class EditPartnerPrefrencesForm(forms.ModelForm):
@@ -30,6 +42,9 @@ class EditPartnerPrefrencesForm(forms.ModelForm):
             'ethnicity'
         )
 
+
+
+
 class EditFoodPrefrencesForm(forms.ModelForm):
     class Meta:
         model = FoodPrefrences
@@ -39,21 +54,18 @@ class EditFoodPrefrencesForm(forms.ModelForm):
             'vegetarian'
         )
 
-    
-        def clean_age(self):
-		        age = self.cleaned_data.get(age)
-		        if not 18<= age <=112:
-		            raise forms.ValidationError ("Your age must be a identified by a number between 18 and 112")
+        
 
-        def clean_sex(self):
-                sex = self.clean_data.get(sex)
-                if not "male" or "female" or "other" in sex:
-                    raise forms.ValidationError ("Your Sex must be identified in lower case male, female, or other")  
-        def clean_location(self):
-                location = self.clean_data.get(location)
-                location = re.search(r'[A-Za-z]', location)
+    
+			    
+                
+      #  def clean_location(self):
+       #         location = self.clean_data.get(location)
+        #        re.search('[A-Za-z]', location)
+        #            raise forms.ValidationError ("Location must only use Letters no characters")
+		#	    return location 
         def clean_ethnicity(self):
                 ethnicity = self.clean_data.get(ethnicity)
-                ethnicity = re.search(r'[A-Za-z]', ethnicity)
+                ethnicity = re.search('[A-Za-z]', ethnicity)
                 
                     

@@ -21,6 +21,9 @@ class UserLoginForm(forms.Form):
         return super(UserLoginForm, self).clean(*args, **kwargs)
 
 class UserRegistrationForm(forms.ModelForm):
+    first_name = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[A-Za-z ]+', 'title':'Enter Characters Only '}))
+    last_name = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[A-Za-z ]+', 'title':'Enter Characters Only '}))
+    password = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[A-z0-9 ]+', 'title':'Enter Characters Only '}))
     email = forms.EmailField(label="Email address")
     email2 = forms.EmailField(label="Confirm Email")
     password = forms.CharField(widget=forms.PasswordInput)
@@ -34,6 +37,10 @@ class UserRegistrationForm(forms.ModelForm):
             'password'
         }
 
+    
+    
+    
+    
     def clean_email2(self):
         email = self.cleaned_data.get('email')
         email2 = self.cleaned_data.get('email2')
@@ -46,9 +53,8 @@ class UserRegistrationForm(forms.ModelForm):
                 raise forms.ValidationError("Please make sure you are using the correct conventions when filling out your email (example@gmail.com)")
             if not ".com" in email:
                 raise forms.ValidationError("Please make sure you are using the correct conventions when filling out your email (example@gmail.com)")
-    def clean_first_name(self):
-                first_name = self.clean_data.get(first_name)
-                first_name = re.search(r'[A-Za-z]', first_name)
-    def clean_last_name(self):
-                last_name = self.clean_data.get(last_name)
-                last_name = re.search(r'[A-Za-z]',last_name)
+	    
+        return email
+
+    
+                
