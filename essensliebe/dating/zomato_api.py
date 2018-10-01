@@ -1,7 +1,9 @@
 import requests
 import ast
+import json
 
 base_url = "https://developers.zomato.com/api/v2.1/"
+
 
 def initialize_app(config):
     return Zomato(config)
@@ -42,7 +44,7 @@ class Zomato:
         city_name = '%20'.join(city_name)
         headers = {'Accept': 'application/json', 'user-key': self.user_key}
         r = (requests.get(base_url + "cities?q=" + city_name, headers=headers).content).decode("utf-8")
-        a = ast.literal_eval(r)
+        a = json.loads(r)
 
         self.is_key_invalid(a)
         self.is_rate_exceeded(a)
@@ -96,7 +98,7 @@ class Zomato:
 
         collections = {}
         for collection in a['collections']:
-            collections.update({collection['collection']['title'] : collection['collection']['url'] })
+            collections.update({collection['collection']['title'] : collection['collection']['url']})
 
         return collections
 
@@ -138,7 +140,7 @@ class Zomato:
         self.is_valid_city_id(city_ID)
 
         headers = {'Accept': 'application/json', 'user-key': self.user_key}
-        r = (requests.get(base_url + "establishments?city_id=" + str(city_ID), headers=headers).content).decode("utf-8")
+        r = (requests.get(base_url + "establishments?city_id=" + str(city_ID), headers=headers).content)
         a = ast.literal_eval(r)
 
         self.is_key_invalid(a)
@@ -171,9 +173,9 @@ class Zomato:
             raise ValueError('InvalidLatitudeOrLongitude')
 
         headers = {'Accept': 'application/json', 'user-key': self.user_key}
-        r = (requests.get(base_url + "geocode?lat=" + str(latitude) + "&lon=" + str(longitude), headers=headers).content).decode("utf-8")
-        a = ast.literal_eval(r)
-
+        r = (requests.get(base_url + "geocode?lat=" + str(latitude) + "&lon=" + str(longitude)+"&start=20&count=20", headers=headers).content).decode("utf-8")
+        a = json.loads(r)
+		print a
         nearby_restaurants = {}
         for nearby_restaurant in a['nearby_restaurants']:
             nearby_restaurants.update({nearby_restaurant['restaurant']['id'] : nearby_restaurant['restaurant']['url']})
@@ -190,7 +192,7 @@ class Zomato:
         self.is_valid_restaurant_id(restaurant_ID)
 
         headers = {'Accept': 'application/json', 'user-key': self.user_key}
-        r = (requests.get(base_url + "restaurant?res_id=" + str(restaurant_ID), headers=headers).content).decode("utf-8")
+        r = (requests.get(base_url + "restaurant?res_id=" + str(restaurant_ID), headers=headers).content)
         a = ast.literal_eval(r)
 
         if 'code' in a:
@@ -219,8 +221,8 @@ class Zomato:
             raise ValueError('LimitNotInteger')
         headers = {'Accept': 'application/json', 'user-key': self.user_key}
         r = (requests.get(base_url + "search?q=" + str(query) + "&count=" + str(limit) + "&lat=" + str(latitude) + "&lon=" + str(longitude) + "&cuisines=" + str(cuisines), headers=headers).content).decode("utf-8")
-        a = ast.literal_eval(r)
-
+        a = json.loads(r)
+        print(a)
         restaurants = []
 
         if a['results_found'] == 0:
