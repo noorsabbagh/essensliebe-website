@@ -4,7 +4,7 @@ from geopy.distance import great_circle
 from geographiclib.geodesic import Geodesic
 from diblogeo import Geo
 import requests, json
-from googleplaces import GooglePlaces
+from googleplaces import GooglePlaces, types
 
 # Creates new geolocator object using Nominatim.
 geolocator = Nominatim(user_agent='app_demo')
@@ -48,8 +48,7 @@ def centre_point_calc(lt1,ln1,b,d):
 # Types: the type of etablishment to be searched, such as 'restaurant'.
 def find_nearby_places(lat, lon, radius):
     AUTH_KEY = api_key
-    #LOCATION = str(lat) + "," + str(lon)
-    LOCATION = "-37.758995953831196,144.83652518592598"
+    LOCATION = str(lat) + "," + str(lon)
     RADIUS = radius
     TYPES = 'restaurant'
     MyUrl = ('https://maps.googleapis.com/maps/api/place/nearbysearch/json'
@@ -62,3 +61,14 @@ def find_nearby_places(lat, lon, radius):
     response = requests.get(MyUrl)
     json_data = json.loads(response.text)
     return(json_data)
+
+# Same method as above, but uses a wrapped version of the google places API.
+# Takes 3 perameters: lat and long of the centre point, and radius of search.
+def find_restaurants(lat, lon, rad):
+    print(lat,lon,rad,types.TYPE_RESTAURANT)
+    query_result = google_places.nearby_search(
+        lat_lng={'lat':lat,'lng':lon},
+        radius=rad, types=[types.TYPE_RESTAURANT])
+    # If query has results then print.
+    if query_result.has_attributions:
+        print(query_result.places)
