@@ -2,6 +2,7 @@
 from geopy.geocoders import Nominatim
 from geopy.distance import great_circle
 from geographiclib.geodesic import Geodesic
+from diblogeo import Geo
 
 # Creates new geolocator object using Nominatim.
 geolocator = Nominatim(user_agent='app_demo')
@@ -29,3 +30,9 @@ def bearing_calc(lat1,lon1,lat2,lon2):
     geo_calc = Geodesic.WGS84.Inverse(lat1,lon1,lat2,lon2)
     bearing = geo_calc['azi1']
     return(bearing)
+
+# Calculates the coordinates of the centre point using bearing and distance
+def centre_point_calc(lt1,ln1,b,d):
+    point = Geo((lt1, ln1))
+    destination = point.destination(bearing=b, kilometers=d)
+    return(destination)
