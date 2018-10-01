@@ -1,14 +1,18 @@
 # Imports required functions from geolocation module
-from geolocation import (
+from localisation import (
 address_to_geolocation, 
 radius_calc, 
 bearing_calc, 
-centre_point_calc, 
-find_nearby_places, 
+centre_point_calc,  
 find_restaurants)
+import zomato_api
 
+config={
+  "user_key":"0af766e8f013b40c87691e93e0dd63a1"
+}
 # Runs main method
 def main():
+    zomato  = zomato_api.initialize_app(config)
     # Ask for user input, request two addresses.
     # After input, convert addresses from strings to lat and long.
     address1 = "51 Cuthbert Drive Mill Park Melbourne"
@@ -32,11 +36,9 @@ def main():
     destination = centre_point_calc(lat1,lon1,bearing,radius)
     d_lat = destination[0]
     d_lon = destination[1]
-    #print(lat, lon)
 
     # Finds nearby places within specified location coordinates and radius with place_type filter.
-    print(find_nearby_places(d_lat,d_lon,radius))
-    #print(find_restaurants(lat,lon,radius))
+    print(zomato.get_nearby_restaurants(d_lat,d_lon))
 
 # Runs main method
 main()

@@ -161,7 +161,7 @@ class Zomato:
 
 
 
-    def get_nearby_restaurants(self, latitude, longitude):
+    def get_nearby_restaurants(self, latitude, longitude, count=20):
         """
         Takes the latitude and longitude as inputs.
         Returns a dictionary of Restaurant IDs and their corresponding Zomato URLs.
@@ -173,12 +173,12 @@ class Zomato:
             raise ValueError('InvalidLatitudeOrLongitude')
 
         headers = {'Accept': 'application/json', 'user-key': self.user_key}
-        r = (requests.get(base_url + "geocode?lat=" + str(latitude) + "&lon=" + str(longitude)+"&start=20&count=20", headers=headers).content).decode("utf-8")
+        r = (requests.get(base_url + "geocode?lat=" + str(latitude) + "&lon=" + str(longitude)+"&start=20&count="+str(count), headers=headers).content).decode("utf-8")
         a = json.loads(r)
-		print a
-        nearby_restaurants = {}
+        json.dumps(a)
+        nearby_restaurants = []
         for nearby_restaurant in a['nearby_restaurants']:
-            nearby_restaurants.update({nearby_restaurant['restaurant']['id'] : nearby_restaurant['restaurant']['url']})
+            nearby_restaurants.append([nearby_restaurant['restaurant']['id'], nearby_restaurant['restaurant']['name'], nearby_restaurant['restaurant']['cuisines'], nearby_restaurant['restaurant']['location']])
 
         return nearby_restaurants
 
