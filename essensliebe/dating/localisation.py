@@ -1,5 +1,6 @@
 # Imports required libraries and modules
 from geopy.geocoders import Nominatim
+from geopy.distance import great_circle
 
 # Creates new geolocator object using Nominatim.
 geolocator = Nominatim(user_agent='app_demo')
@@ -9,3 +10,15 @@ def address_to_geolocation(address):
     location = geolocator.geocode(str(address))
     lat,lon = location.latitude, location.longitude
     return(lat,lon)
+
+# Calculates the radius between the two matched users by halving the distance.
+def radius_calc(address1,address2): 
+    my_dist = distance_calc(address1,address2)
+    radius = int(my_dist/2)
+    return(radius)
+
+# Calculates distance between two points then generates distance used for circumfrence which is
+# then returned in kms.
+def distance_calc(address1,address2): 
+    my_dist = great_circle(address1,address2).kilometers
+    return(my_dist)
