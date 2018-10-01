@@ -7,7 +7,7 @@ import re
 class EditProfileForm(forms.ModelForm):
     age = forms.IntegerField(required=True,widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[0-9 ]+', 'title':'Enter Characters Only '}))
     sex = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[A-Za-z ]+', 'title':'Enter Characters Only '}))
-    age = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[A-Za-z ]+', 'title':'Enter Characters Only '}))
+    location = forms.CharField(required=True,widget=forms.TextInput(attrs={'class':'form-control' , 'autocomplete': 'off','pattern':'[A-Za-z ]+', 'title':'Enter Characters Only '}))
     class Meta:
         model = Profile
         fields = {
@@ -26,7 +26,7 @@ class EditProfileForm(forms.ModelForm):
             
             return age
         def clean_sex(self):
-            sex = self.clean_data.get('sex')
+            sex = self.cleaned_data.get('sex')
             if not "male" or "female" or "other" in 'sex':
                     raise forms.ValidationError ("Your Sex must be identified in lower case male, female, or other")
             return sex
