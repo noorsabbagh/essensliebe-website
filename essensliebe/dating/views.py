@@ -19,7 +19,7 @@ def dating_view(request):
     address1_coordinates = (lat1, lon1)
     #print(address1_coordinates)
 
-    address2 = "1 Barmah Street Manor Lakes Melbourne"
+    address2 = "35 Swanston street melbourne"
     lat2, lon2 = location.address_to_geolocation(address2)
     address2_coordinates = (lat2, lon2)
     #print(address2_coordinates)
