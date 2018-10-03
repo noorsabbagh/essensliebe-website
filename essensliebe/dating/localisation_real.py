@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 
 # Runs main method
-def dating_view(request):
+def main(request):
     config={
   "user_key":"0af766e8f013b40c87691e93e0dd63a1"
 }
@@ -38,10 +38,10 @@ def dating_view(request):
 
     # Finds nearby places within specified location coordinates and radius with place_type filter.
     resteraunts = zomato.get_nearby_restaurants(d_lat,d_lon)
-    print(resteraunts)
+    print(type(resteraunts))
     test = resteraunts
     context = {
-        'test': resteraunts
+        'test': test
     }
 
     

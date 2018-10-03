@@ -1,0 +1,31 @@
+  def clean_first_name(self):
+                first_name = self.clean_data.get('first_name')
+                first_name = re.search(r'[A-Za-z]', first_name)
+    def clean_last_name(self):
+                last_name = self.clean_data.get(last_name)
+                last_name = re.search(r'[A-Za-z]',last_name)
+
+from django.shortcuts import render
+from . import zomato_api
+import json
+
+# Create your views here.
+def date_view(request):
+    
+    config={
+        "user_key":"0af766e8f013b40c87691e93e0dd63a1"
+    }
+
+    zomato  = zomato_api.initialize_app(config)
+
+    user_location = request.user.profile.location
+    city_ID = zomato.get_city_ID(user_location)
+    collections = zomato.get_collections(city_ID)
+    print(type(collections))
+    meme =  collections
+    context = {
+        'meme': meme
+    }
+		
+ 
+    return render(request, 'dating.html', context)

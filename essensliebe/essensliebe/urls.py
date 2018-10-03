@@ -24,7 +24,7 @@ from django.conf.urls.static import static
 from django.conf.urls import url
 from matches.views import matches_view
 from likes.views import like_user
-from dating.views import date_view
+from dating.views import dating_view
 from report.views import report_user
 
 
@@ -50,7 +50,7 @@ urlpatterns = [
     path('profile/<str:username>/prefrences/food', edit_food_prefrences, name='edit_food_prefrences'),
     path('matches/', matches_view, name='matches_view'),
     path('like/<int:id>/', like_user, name='like_user'),
-    path('dating/', date_view, name='date_view' ),
+    path('dating/', dating_view, name='dating_view' )
 
 
 
