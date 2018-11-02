@@ -34,33 +34,34 @@ def profile(request, username):
     
 
 def edit_profile(request, username):
-    if request.method == 'POST':
-        form = EditProfileForm(data=request.POST or None, instance=request.user.profile, files=request.FILES)
+	form = EditProfileForm(data=request.POST or None, instance=request.user.profile, files=request.FILES)
 
-        if form.is_valid():
-            form.save()
-            return redirect('/profile/' + str(username))
-
-    else:
-        form = EditProfileForm(instance=request.user.profile)
-        args = {'form': form}
-        return render(request, 'edit_profile.html', args)
-
+	if form.is_valid():
+		form.save()
+		return redirect('/profile/' + str(username))
+	
+	args = {'form': form,"request":request}
+	return render(request, 'edit_profile.html', args)
 
 def prefrences(request, username):
-    return render(request, 'prefrences.html')
+	user = get_object_or_404(User, username=username)
+	profile, created = Profile.objects.get_or_create(user=user)
+	args = {'profile':profile}
+	return render(request, 'prefrences.html',args)
 
 def edit_partner_prefrences(request, username):
     if request.method == 'POST':
         form = EditPartnerPrefrencesForm(data=request.POST or None, instance=request.user.partner_prefrences, files=request.FILES)
-
+        
         if form.is_valid():
             form.save()
             return redirect('/profile',)
 
     else:
+        user = get_object_or_404(User, username=username)
+        profile, created = Profile.objects.get_or_create(user=user)
         form = EditPartnerPrefrencesForm(instance=request.user.partner_prefrences)
-        args = {'form': form}
+        args = {'profile':profile,'form': form}
         return render(request, 'edit_partner_prefrences.html', args)
 
 def edit_food_prefrences(request, username):

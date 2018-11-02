@@ -1,0 +1,7 @@
+django
+crispy_forms
+django-crispy-forms
+geopy
+diblogeo
+requests
+https://github.com/slimkrazy/python-google-places/zipball/master
