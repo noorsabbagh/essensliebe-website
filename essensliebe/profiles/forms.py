@@ -14,7 +14,7 @@ class EditProfileForm(forms.ModelForm):
 		form_data = self.cleaned_data
 		age = self.cleaned_data.get('age')
 		sex = self.cleaned_data.get('sex')
-		if age is None or 18<= age >=112:
+		if age is None or not 18<= age and not age >=112:
 			self.errors["age"] = ["Your age must be a identified by a number between 18 and 112"]
 		if sex is None:
 			self.errors["sex"] = ["Your Sex must be identified in lower case male, female, or other"]
