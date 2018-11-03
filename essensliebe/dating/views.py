@@ -12,7 +12,7 @@ def dating_view(request):
 }
     location = localisation.initialize_app()
     zomato  = zomato_api.initialize_app(config)
-    # Ask for user input, request two addresses.
+    
     # After input, convert addresses from strings to lat and long.
     address1 = request.user.profile.location
     lat1, lon1 = location.address_to_geolocation(address1)

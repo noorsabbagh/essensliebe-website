@@ -83,3 +83,12 @@ class UserLoginForm_Test(TestCase):
 	def test_UserLoginForm_Missing_Username(self):
 		form = UserLoginForm(data={"username":"", "password": "TestymcTest1"})
 		self.assertFalse(form.is_valid())
+		
+class UserLoginDB_Test(TestCase):
+	def test_UserRegistrationForm_valid_DB(self):
+		data={"username":"testymctest","email": "test@test.me","email2": "test@test.me", "password": "TestymcTest1", "first_name": "test", "last_name": "test"}
+		response = self.client.post("/register/",data,follow=True)
+		self.assertTrue(response.request["PATH_INFO"].startswith('/login/') and User.objects.filter(username="testymctest").count() > 0)
+		
+
+		

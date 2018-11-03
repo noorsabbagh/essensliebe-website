@@ -29,6 +29,7 @@ from report.views import report_user
 
 
 urlpatterns = [
+	path('', include('home.urls')), 
     path('admin/', admin.site.urls),
     path('index/', include('home.urls')),
     path('login/', login_view, name='login'),
