@@ -76,7 +76,7 @@ def single(request, id):
 				next_q_instance = next_q.first()
 				return redirect("questions_single", id=next_q_instance.id)
 			else:
-				return redirect("home")
+				return redirect('/index/')
 
 		context = {
 			"form": form,
