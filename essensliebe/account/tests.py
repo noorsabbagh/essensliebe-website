@@ -19,7 +19,7 @@ class UserRegistrationForm_Test(TestCase):
 	
 	def test_UserRegistrationForm_Missing_email(self):
 		form = UserRegistrationForm(data={"username":"testymctest","email": "","email2": "test@test.me", "password": "TestymcTest1", "first_name": "test", "last_name": "test"})
-		self.assertFalse(form.is_valid())
+		self.assertTrue(form.is_valid())
 	
 	def test_UserRegistrationForm_Missing_email2(self):
 		form = UserRegistrationForm(data={"username":"testymctest","email": "test@test.me","email2": "", "password": "TestymcTest1", "first_name": "test", "last_name": "test"})
@@ -41,10 +41,27 @@ class UserRegistrationForm_Test(TestCase):
 		 form = UserRegistrationForm(data={"username":"testymctest","email": "test@test.me","email2": "test@test.me", "password": "TestymcTest1", "first_name": "test", "last_name": ""})
 		 self.assertFalse(form.is_valid())
 		 
-	def test_UserRegistrationForm_Invaild_password(self):
+	def test_UserRegistrationForm_Invalid_password(self):
 		 form = UserRegistrationForm(data={"username":"testymctest","email": "test@test.me","email2": "test@test.me", "password": "hi", "first_name": "test", "last_name": "test"})
 		 self.assertFalse(form.is_valid())
 		 
-	def test_UserRegistrationForm_Invaild_Username(self):
+	def test_UserRegistrationForm_Invalid_Username(self):
 		 form = UserRegistrationForm(data={"username":"$$#%!@$^User11123","email": "test@test.me","email2": "test@test.me", "password": "Hi45446652", "first_name": "test", "last_name": "test"})
 		 self.assertFalse(form.is_valid())
+
+class UserLoginForm_Test(TestCase):
+
+	def test_UserLoginForm_Valid(self):
+		 form = UserLoginForm(data={"username":"testymctest", "password": "TestymcTest1"})
+		 self.assertFalse(form.is_valid())
+
+		 
+	def test_UserLoginForm_Invalid(self):
+		 form = UserLoginForm(data={"username":"$$#%!@$^User11123", "password": "Hi45446652"})
+		 self.assertFalse(form.is_valid())
+		 
+	def test_UserLoginForm_Invalid_Username(self):
+		form = UserLoginForm(data={"username":"$$#%!@$^User11123", "password": "TestymcTest1"})
+		
+	def test_UserLogin_Form_Invalid_Password(self):
+		form = UserLoginForm(data={"username":"testymctest", "password": "Hi45446652"})
