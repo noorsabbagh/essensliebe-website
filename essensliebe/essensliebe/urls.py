@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from account.views import (login_view, register_view, logout_view)
+from account.views import (login_view, register_view, logout_view,api_view) 
 from profiles.views import profile, edit_profile, edit_food_prefrences, edit_partner_prefrences, prefrences, user_compose
 from questions.views import questions_view, single
 from directmessage.views import inbox, sent, compose, view_direct_message, reply
@@ -34,6 +34,7 @@ urlpatterns = [
     path('index/', include('home.urls')),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
+	path('createdummydata/', api_view, name='api'), 
     path('register/', register_view, name='register'),
     path('questions/', questions_view, name='questions'),
     path('questions/<int:id>/', single, name='questions_single'),
