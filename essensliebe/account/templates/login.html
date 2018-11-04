@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} Essensliebe {% endblock %}
+{% block content %}
+
+
+<!-- Login Register -->  
+<section style="background: #FFA1A1; padding-top: 50px; padding-bottom: 50px" id="our-blog" class="text-center">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-10">
+                <div class="bglight logincontainer">
+                    <h3 class="redcolor bottom35">Login </h3>
+                    <form class="getin_form border-form" action="" method="POST">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group bottom35">
+                                    {% csrf_token %}                       
+                                    {{ form.as_p }}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <button type="submit" class="button btnprimary">Login</button>
+                                <p class="top20 log-meta"> Don't have an account? <a href="/register/">Sign Up Now</a> </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

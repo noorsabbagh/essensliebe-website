@@ -3,27 +3,42 @@
 {% block content %}
 <section class="container mt-4 mb-4">
     <div class="container">
-        <h2>Your Matches</h2>
-        <hr/>
-        <div class="row mb-3">
-            {% for match_user, percent in matches %}
-            <div class="col-md-6">
-                <div class="d-flex flex-row border rounded">
-                      <div class="p-0 w-25">
-                          <img src="{{match_user.profile.picture.url}}" width="250" height="300" class="img-thumbnail border-0" />
-                      </div>
-                      <div class="pl-3 pt-2 pr-2 pb-2 w-75 border-left">
-                              <h4 class="text-primary">{{match_user}}</h4>
-                              <h5 class="text-info">{{percent}}</h5>
-                              <h5 class="text-info">{{match_user.first_name}} {{match_user.last_name}}</h5>
-                              <h5 class="text-info">{{match_user.profile.location}}</h5>
-                            <a href="{{match_user.profile.get_absolute_url}}" class="btn btn-primary"><i class="far fa-user"></i> View Profile</a>                            
+        <section id="our-team" class="padding bglight">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 col-sm-12 text-center">
+                        <div class="heading-title wow fadeInUp" data-wow-delay="300ms">
+                            <span>ESSENSLIEBE</span>
+                            <h2 class="darkcolor bottom20">Your Matches</h2>
+                            <p class="heading_space">She liked pizza and I liked pizza, now we've been together for 3 years! </p>
+                        </div>
                     </div>
-                    <br/>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="ourteam-slider" class="owl-carousel">
+                            {% for match_user, percent in matches %}
+                            <div class="item">
+                                <div class="team-box">
+                                    <div class="image">
+                                        <a href="{{match_user.profile.get_absolute_url}}"><img src="{{match_user.profile.picture.url}}" alt=""></a>
+                                    </div>
+                                    <div class="team-content gradient_bg whitecolor">
+                                        <h3>{{match_user.first_name}} {{match_user.last_name}}</h3>
+                                        <p class="bottom40">{{match_user}} <br>{{match_user.profile.location}}</p>
+                                        <div class="progress-bars">
+                                            <div class="progress">
+                                                <p>Matching Rate</p>
+                                                <div class="progress-bar" data-value="{{percent}}"><span>{{percent}}</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+        </section>
 {% endblock %}
