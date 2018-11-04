@@ -4,11 +4,9 @@
 <div class="container">
 
     <h2>List of cuisines in {{request.user.profile.location}}</h2>
-	
+    {% for me,me2 in meme.items %}
+    <p> {{me }}: <a href="{{me2}}" target="_blank">{{me2}}</a></p>
+    {% endfor %}
 
-       {% for test1 in test %}
-			<p> {{test1 }}</p>
-	   {% endfor %}
-		
 </div>
 {% endblock %}
