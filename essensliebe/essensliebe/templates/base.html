@@ -1,63 +1,231 @@
-{% include "scripts.html" %}
-
-
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>{% block title %}{% endblock %}</title>
-</head>
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button> 
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <head>
+        <!-- Required meta tags -->
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Essensliebe{% endblock %}</title>
+        <link href="/media/media/favicon.png" rel="icon">
+        <!--Plugins css-->
+        {% load static %}
+        <link rel='stylesheet' type='text/css' href="{% static "css/plugins.css" %}" />
+        <!--Custom Styles-->
+        <link rel='stylesheet' type='text/css' href="{% static "css/style.css" %}" />
+        <link rel="stylesheet" href="{% static "css/pink.css" %}">
+
+    </head>
+    <body  data-spy="scroll" data-target=".navbar" data-offset="90">
+
+        <!--PreLoader-->
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="loader-blocks">
+                    <span class="block-1"></span>
+                    <span class="block-2"></span>
+                    <span class="block-3"></span>
+                    <span class="block-4"></span>
+                    <span class="block-5"></span>
+                    <span class="block-6"></span>
+                    <span class="block-7"></span>
+                    <span class="block-8"></span>
+                    <span class="block-9"></span>
+                    <span class="block-10"></span>
+                    <span class="block-11"></span>
+                    <span class="block-12"></span>
+                    <span class="block-13"></span>
+                    <span class="block-14"></span>
+                    <span class="block-15"></span>
+                    <span class="block-16"></span>
                 </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        {% if request.user.is_authenticated %}
-                        <li>
-                            <a href="/index/">Home</a>
-                        </li>
-                        <li>
-                            <a href="/logout/">Logout</a>
-                        </li>
-                        <li>
-                            <a href="{{request.user.profile.get_absolute_url}}">Profile</a>
-                        </li>
-                        <li>
-                            <a href="/questions/1">Questions</a>
-                        </li>
-                        <li>
-                            <a href="/matches/">Matches</a>
-                        </li>
-                        <li>
-                            <a href="/dating/">Dating</a>
-                        </li>
-                        {% else %}
-                        <li>
-                            <a href="/index/">Home</a>
-                        </li>
-                        <li>
-                            <a href="/login/">Login</a>
-                        </li>
-                        <li>
-                            <a href="/register/">Register</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.container -->
-    </nav>
-    <hr><hr>
+        </div>
+        <!--PreLoader Ends-->
+
+        <!-- header -->
+        <header class="site-header">
+            <nav class="navbar navbar-expand-lg bg-white static-nav">
+                <div class="container">
+
+                    <a class="navbar-brand" href="/index/">
+                        <img src="/media/media/logo-1.png" alt="logo">
+                    </a>
+                    <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#xenav">
+                        <span> </span>
+                        <span> </span>
+                        <span> </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="xenav">
+                        <ul class="navbar-nav ml-auto">
+                            {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a  href="/index/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a  href="{{request.user.profile.get_absolute_url}}">Profile</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a  href="/questions/1">Questions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/dating/">Dating</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/matches/">Matches</a>
+                            </li>
+                            <li class="nav-item">
+                                <a  href="/logout/">Logout</a>
+                            </li>
+                            {% else %}
+                            <li>
+                            <li class="nav-item">
+                                <a  href="/index/">Home</a>
+                            </li>
+                            <li>
+                            <li class="nav-item">
+                                <a  href="/login/">Login</a>
+                            </li>
+                            <li>
+                            <li class="nav-item">
+                                <a  href="/register/">Register</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+                <!--side menu open button-->
+                {% if request.user.is_authenticated %}
+                <p id="sidemenu_text" class="nav-item nav-link top20">{{request.user}}</p>
+                {% else %}
+
+                {% endif %}
+                <!--side menu open button-->
+                <a href="javascript:void(0)" class="" id="sidemenu_toggle">
+                    <img id="sidemenu_pic" class="profile-navbar" src="{{request.user.profile.picture.url}}">
+                </a>
+            </nav>
+
+            <!-- side menu -->
+            <div class="side-menu">
+                <div class="inner-wrapper">
+                    <span class="btn-close" id="btn_sideNavClose"><i></i><i></i></span>
+                    <nav class="side-nav">
+                        <ul class="navbar-nav">
+                            {% if request.user.is_authenticated %}
+
+                            <img class="profile-sidemenu bottom40" src="{{request.user.profile.picture.url}}">
+                            <li class="nav-item">
+                                <a href="/directmessage/inbox" class="text-white">{% if not request.session.num_of_message == 0 %}<span class='badge pull-right'>
+                                    {{ request.session.num_of_message }}</span>{% endif %}Message</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="text-white" href="/directmessage/sent">Sent</a>
+                            </li>
+
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="text-white" href="/register/">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="text-white" href="/login/">Login</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            </div>
+
+        <!-- End side menu -->
+        </header>
+    <!-- header -->
+
+
     {% block content %}
     {% endblock %} 
-</body>
+    <!--Site Footer Here-->
+    </body>
+
+<div class="footer">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 text-center">
+
+            <p class="copyrights wow fadeInUp" data-wow-delay="300ms"> &copy; 2018 Essensliebe. Food for Love. </p>
+        </div>
+    </div>
+</div>
+
+<!--Footer ends-->   
+
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
+
+<!--Bootstrap Core-->
+
+<script src=" {% static "js/popper.min.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+
+<!--to view items on reach-->
+<script src=" {% static "js/jquery.appear.js" %}"></script>
+
+<!--Equal-Heights-->
+<script src=" {% static "js/jquery.matchHeight-min.js" %}"></script>
+
+<!--Owl Slider-->
+<script src=" {% static "js/owl.carousel.min.js" %}"></script>
+
+<!--number counters-->
+<script src="{% static "js/jquery-countTo.js" %}"></script>
+
+<!--Parallax Background-->
+<script src=" {% static "js/parallaxie.js" %}"></script>
+
+<!--Cubefolio Gallery-->
+<script src=" {% static "js/jquery.cubeportfolio.min.js" %}"></script>
+
+<!--FancyBox popup-->
+<script src=" {% static "js/jquery.fancybox.min.js" %}"></script>          
+
+<!-- Video Background-->
+<script src=" {% static "js/jquery.background-video.js" %}"></script>
+
+<!--TypeWriter-->
+<script src=" {% static "js/typewriter.js" %}"></script> 
+
+<!--Particles-->
+<script src=" {% static "js/particles.min.js" %}"></script>            
+
+<!--WOw animations-->
+<script src=" {% static "js/wow.min.js" %}"></script>
+<!--Revolution SLider-->
+<script src="{% static "js/revolution/jquery.themepunch.tools.min.js" %}"></script>
+<script src="{% static "js/revolution/jquery.themepunch.revolution.min.js" %}"></script>
+<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+<script src="{% static "js/revolution/extensions/revolution.extension.actions.min.js" %}"></script>
+<script src="{% static "js/revolution/extensions/revolution.extension.carousel.min.js" %}"></script>
+<script src="{% static "js/revolution/extensions/revolution.extension.kenburn.min.js" %} "></script>
+<script src="{% static "js/revolution/extensions/revolution.extension.layeranimation.min.js" %}"></script>
+<script src="{% static "js/revolution/extensions/revolution.extension.migration.min.js" %}"></script>
+<script src="{% static "js/revolution/extensions/revolution.extension.navigation.min.js" %} "></script>
+<script src="{% static "js/revolution/extensions/revolution.extension.parallax.min.js" %}"></script>
+<script src="{% static "js/revolution/extensions/revolution.extension.slideanims.min.js" %}"></script>
+<script src="{% static "js/revolution/extensions/revolution.extension.video.min.js" %}"></script>
+
+
+<!--Google Map API-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_egfOLjahHB0IWpykRZrVFD8fN4JMgmw"></script>
+<script src=" {% static "js/functions.js" %}"></script>
+
 </html>
