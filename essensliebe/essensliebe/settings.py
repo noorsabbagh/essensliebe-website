@@ -129,11 +129,13 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, /media/media/)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MDEIA_ROOT = os.path.join(BASE_DIR, "media")
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),'static',]
+
 
 
