@@ -1,6 +1,7 @@
 import requests
 import ast
 import json
+from dating.restaurant import Resteraunt, Address
 
 base_url = "https://developers.zomato.com/api/v2.1/"
 
@@ -175,10 +176,13 @@ class Zomato:
         headers = {'Accept': 'application/json', 'user-key': self.user_key}
         r = (requests.get(base_url + "geocode?lat=" + str(latitude) + "&lon=" + str(longitude)+"&start=20&count="+str(count), headers=headers).content).decode("utf-8")
         a = json.loads(r)
-        json.dumps(a)
         nearby_restaurants = []
         for nearby_restaurant in a['nearby_restaurants']:
-            nearby_restaurants.append([nearby_restaurant['restaurant']['id'], nearby_restaurant['restaurant']['name'], nearby_restaurant['restaurant']['cuisines'], nearby_restaurant['restaurant']['location']])
+            res = nearby_restaurant['restaurant']
+            loc = nearby_restaurant['restaurant']['location']
+            address = Address(loc['address'],loc['city'],loc['latitude'],loc['longitude'],loc['zipcode'])
+            restaurant = Resteraunt(res['id'],res['name'],res['cuisines'],res['url'].split('?')[0],address)
+            nearby_restaurants.append(restaurant)
 
         return nearby_restaurants
 

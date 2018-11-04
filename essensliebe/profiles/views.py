@@ -3,7 +3,7 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm
-from .models import Profile
+from .models import Profile,PartnerPrefrences
 from likes.models import UserLike
 from matches.models import Match
 from django.urls import reverse
@@ -45,22 +45,24 @@ def edit_profile(request, username):
 
 def prefrences(request, username):
 	user = get_object_or_404(User, username=username)
-	profile, created = Profile.objects.get_or_create(user=user)
-	args = {'profile':profile}
+	prefrences, created = PartnerPrefrences.objects.get_or_create(user=user)
+	args = {'user':prefrences.user}
 	return render(request, 'prefrences.html',args)
 
 def edit_partner_prefrences(request, username):
+    user = get_object_or_404(User, username=username)
+    profile, created = Profile.objects.get_or_create(user=user)
     if request.method == 'POST':
-        form = EditPartnerPrefrencesForm(data=request.POST or None, instance=request.user.partner_prefrences, files=request.FILES)
+        form = EditPartnerPrefrencesForm(data=request.POST or None, instance=request.user.profile.partner_prefrences, files=request.FILES)
         
         if form.is_valid():
             form.save()
-            return redirect('/profile',)
+            return redirect('/profile/' + str(username))
 
     else:
-        user = get_object_or_404(User, username=username)
-        profile, created = Profile.objects.get_or_create(user=user)
-        form = EditPartnerPrefrencesForm(instance=request.user.partner_prefrences)
+        
+        
+        form = EditPartnerPrefrencesForm(instance=request.user.profile.partner_prefrences)
         args = {'profile':profile,'form': form}
         return render(request, 'edit_partner_prefrences.html', args)
 
