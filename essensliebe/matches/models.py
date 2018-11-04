@@ -4,11 +4,11 @@ from django.dispatch import Signal
 from django.conf import settings
 from django.urls import reverse
 from django.db import models
-
+from django.contrib.auth.models import User
 from django.utils import timezone
 from .utils import get_match
 
-User = settings.AUTH_USER_MODEL
+#User = settings.AUTH_USER_MODEL
 
 class MatchQuerySet(models.query.QuerySet):
 	def all(self):
@@ -82,17 +82,21 @@ class MatchManager(models.Manager):
 		qs = self.get_queryset().matches(user).order_by('-match_decimal')
 		matches = []
 		for match in qs:
-			if match.user_a == user:
-				items_wanted = [match.user_b, match.get_percent]
-				matches.append(items_wanted)
-			elif match.user_b == user:
-				items_wanted = [match.user_a, match.get_percent]
-				matches.append(items_wanted)
-			else:
-				pass
+			if match.match_decimal > 0.3:
+				if match.user_a == user:
+					items_wanted = [match.user_b, match.get_percent]
+					matches.append(items_wanted)
+				elif match.user_b == user:
+					items_wanted = [match.user_a, match.get_percent]
+					matches.append(items_wanted)
+				else:
+					pass
 		return matches
 
-
+	def findMatches(self,user1):
+		allUsers = User.objects.all()
+		for currUser in allUsers:
+			self.get_or_create_match(user_a=user1, user_b=currUser)
 
 
 class Match(models.Model):
