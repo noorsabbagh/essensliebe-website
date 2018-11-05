@@ -1,43 +1,72 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.http import Http404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm
+from .models import Profile,PartnerPrefrences
+from likes.models import UserLike
+from matches.models import Match
+from django.urls import reverse
+from django.contrib.auth.models import User
+import datetime
 from .forms import EditProfileForm, EditPartnerPrefrencesForm, EditFoodPrefrencesForm
+from directmessage.forms import ComposeForm
 # Create your views here.
-def profile(request):
-    args = {'user':request.user}
+User = get_user_model()
+
+@login_required
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
+    matches, match_created = Match.objects.get_or_create_match(user_a=request.user, user_b=user)
+    profile, created = Profile.objects.get_or_create(user=user)
+    user_like, user_like_created = UserLike.objects.get_or_create(user=request.user)
+    do_i_like = False
+    if user in user_like.liked_users.all():
+        do_i_like=True
+    mutual_like = user_like.get_mutual_like(user)
+    args = {
+        'profile':profile, 
+        'matches':matches,
+        "mutual_like": mutual_like,
+        "do_i_like": do_i_like,
+    }
     return render(request, 'profile.html', args)
+    
 
-def edit_profile(request):
+def edit_profile(request, username):
+	form = EditProfileForm(data=request.POST or None, instance=request.user.profile, files=request.FILES)
+
+	if form.is_valid():
+		form.save()
+		return redirect('/profile/' + str(username))
+	
+	args = {'form': form,"request":request}
+	return render(request, 'edit_profile.html', args)
+
+def prefrences(request, username):
+	user = get_object_or_404(User, username=username)
+	prefrences, created = PartnerPrefrences.objects.get_or_create(user=user)
+	args = {'user':prefrences.user}
+	return render(request, 'prefrences.html',args)
+
+def edit_partner_prefrences(request, username):
+    user = get_object_or_404(User, username=username)
+    profile, created = Profile.objects.get_or_create(user=user)
     if request.method == 'POST':
-        form = EditProfileForm(data=request.POST or None, instance=request.user.profile, files=request.FILES)
-
+        form = EditPartnerPrefrencesForm(data=request.POST or None, instance=request.user.profile.partner_prefrences, files=request.FILES)
+        
         if form.is_valid():
             form.save()
-            return redirect('/profile')
+            return redirect('/profile/' + str(username))
 
     else:
-        form = EditProfileForm(instance=request.user.profile)
-        args = {'form': form}
-        return render(request, 'edit_profile.html', args)
-
-
-def prefrences(request):
-    return render(request, 'prefrences.html')
-
-def edit_partner_prefrences(request):
-    if request.method == 'POST':
-        form = EditPartnerPrefrencesForm(data=request.POST or None, instance=request.user.partner_prefrences, files=request.FILES)
-
-        if form.is_valid():
-            form.save()
-            return redirect('/profile')
-
-    else:
-        form = EditPartnerPrefrencesForm(instance=request.user.partner_prefrences)
-        args = {'form': form}
+        
+        
+        form = EditPartnerPrefrencesForm(instance=request.user.profile.partner_prefrences)
+        args = {'profile':profile,'form': form}
         return render(request, 'edit_partner_prefrences.html', args)
 
-def edit_food_prefrences(request):
+def edit_food_prefrences(request, username):
     if request.method == 'POST':
         form = EditFoodPrefrencesForm(data=request.POST or None, instance=request.user.food_prefrences, files=request.FILES)
 
@@ -49,3 +78,16 @@ def edit_food_prefrences(request):
         form = EditFoodPrefrencesForm(instance=request.user.food_prefrences)
         args = {'form': form}
         return render(request, 'edit_food_prefrences.html', args)
+
+def user_compose(request, user_id):
+    user = User.objects.get(id=user_id)
+    form = ComposeForm(request.POST or None)
+    if form.is_valid():
+        send_message = form.save(commit=False)
+        send_message.sender = request.user
+        send_message.receiver = user
+        send_message.sent = datetime.datetime.now()
+        send_message.save()
+        return HttpResponseRedirect(reverse('inbox'))
+
+    return render(request, 'user_compose.html', locals())

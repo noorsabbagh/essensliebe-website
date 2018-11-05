@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+        <div class="row">
+                <div class="col-md-3">
+
+                </div>
+                <div class='col-lg-7'>
+
+                        <table class="table table-striped">
+                                <thead>
+                                <th>From</th><th>Subject</th>
+                            </thead>
+                                <tbody>    
+{% for item in messages_sent %}
+<tr>
+        <td>
+{{ item }} <small>To: {{ item.receiver }} on {{ item.sent }}</small><br/>
+</td>
+<td>
+    {{ item.body }}
+</td>
+</tr>
+{% endfor%}
+</tbody>
+</table>
+
+{% endblock%}

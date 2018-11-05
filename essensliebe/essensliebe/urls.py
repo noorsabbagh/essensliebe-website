@@ -15,26 +15,45 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from account.views import (login_view, register_view, logout_view)
-from profiles.views import profile, edit_profile, edit_food_prefrences, edit_partner_prefrences, prefrences
+from account.views import (login_view, register_view, logout_view,api_view) 
+from profiles.views import profile, edit_profile, edit_food_prefrences, edit_partner_prefrences, prefrences, user_compose
 from questions.views import questions_view, single
+from directmessage.views import inbox, sent, compose, view_direct_message, reply
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
+from matches.views import matches_view
+from likes.views import like_user
+from dating.views import dating_view
+from report.views import report_user
+
 
 urlpatterns = [
+	path('', include('home.urls')), 
     path('admin/', admin.site.urls),
-    path('index/', include('webapp.urls')),
+    path('index/', include('home.urls')),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
+	path('createdummydata/', api_view, name='api'), 
     path('register/', register_view, name='register'),
     path('questions/', questions_view, name='questions'),
     path('questions/<int:id>/', single, name='questions_single'),
-    path('profile/', profile, name='profile'),
-    path('profile/edit', edit_profile, name='edit_profile'),
-    path('profile/prefrences', prefrences, name='prefrences'),
-    path('profile/prefrences/partner', edit_partner_prefrences, name='edit_partner_prefrences'),
-    path('profile/prefrences/food', edit_food_prefrences, name='edit_food_prefrences'),
+    path('directmessage/inbox', inbox, name='inbox'),
+    path('directmessage/sent', sent, name='sent'),
+    path('directmessage/compose', compose, name='compose'),
+    path('directmessage/view/<int:dm_id>/', view_direct_message, name='view_direct_message'),
+    path('directmessage/view/<int:dm_id>/reply/', reply, name='reply'),
+    path('profile/<str:username>/', profile, name='profile'),
+    path('report/<int:user_id><str:username>/report_user', report_user, name='report_user'),
+    path('profile/<str:username>/edit/', edit_profile, name='edit_profile'),
+    path('profile/<int:user_id>/user_compose', user_compose, name='user_compose'),
+    path('profile/<str:username>/prefrences', prefrences, name='prefrences'),
+    path('profile/<str:username>/prefrences/partner', edit_partner_prefrences, name='edit_partner_prefrences'),
+    path('profile/<str:username>/prefrences/food', edit_food_prefrences, name='edit_food_prefrences'),
+    path('matches/', matches_view, name='matches_view'),
+    path('like/<int:id>/', like_user, name='like_user'),
+    path('dating/', dating_view, name='dating_view' )
 
 
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

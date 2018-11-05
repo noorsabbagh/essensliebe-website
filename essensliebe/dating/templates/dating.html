@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} Profile {% endblock %}
+{% block content %}
+<style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+<div class="container">
+
+    <h2>List of cuisines in {{request.user.profile.location}}</h2>
+    <br/>
+    <br/>
+    {% for res in resteraunts %}
+    <div class="resteraunt">
+        <h3>{{res.name }}</h3>
+        <br/>
+        <p>Cuisines Served: {{res.cuisine}}</p>
+        <p>The site: <a href="{{res.url}}" target="_blank">{{res.url}}</a><p/>
+        <div class="address">
+            <p>Address: {{res.address.address}}</p>
+            </address>
+        </div>
+        <br/>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock %}

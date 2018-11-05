@@ -32,11 +32,16 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'user.apps.UserConfig',
-    'webapp',
+    'home',
     'crispy_forms',
     'account',
     'profiles',
     'questions',
+    'directmessage',
+    'matches',
+    'likes',
+    'report',
+    'dating',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -97,6 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+		  'OPTIONS': {
+            'min_length': 6,
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -121,11 +129,13 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, /media/media/)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MDEIA_ROOT = os.path.join(BASE_DIR)
-MDEIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", "media_root")
+MDEIA_ROOT = os.path.join(BASE_DIR, "media")
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),'static',]
+
+
 

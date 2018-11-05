@@ -1,21 +1,111 @@
 {% extends "base.html" %}
 {% block title %} Profile {% endblock %}
 {% block content %}
-<div class="container">
-    <h2>{{user}}</h2>
-    <img class="profile_image" src="{{user.profile.picture.url}}">
-    <br><br>
-    <a href="/profile/edit" class="btn btn-primary active">Edit profile</a>
-    <a href="/profile/prefrences" class="btn btn-primary active">Edit prefrences</a>
-    <br><br>
+<section id="our-apps" class="padding">
+        <div class="container">
+           <div class="row">
+    
+           </div>
+           
+           <div class="row" id="app-feature">
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                 <div class="content-left clearfix">
 
-    <p>Location: {{user.profile.location}}</p>
-    <p>Age: {{user.profile.age}}</p>
-    <p>Sex: {{user.profile.sex}}</p>
-    <p>First Name: {{user.first_name}}</p>
-    <p>Last Name: {{user.last_name}}</p>
-    <p>Ethnicity: {{user.profile.ethnicity}}</p>
-    <p>Description: {{user.profile.description}}</p>
 
+                        {% if profile.user != request.user %}
+                        {% if mutual_like %}
+                    <div class="feature-item left top30 bottom30 wow fadeInUp" data-wow-delay="300ms">
+                      <a href="/profile/{{profile.id}}/user_compose" <span class="icon"><i class="fa fa-mobile-phone"></i></span></a>
+                       <div class="text">
+                          <h4>Message</h4>
+                          <p>Message this user</p>
+                       </div>
+                    </div>
+                    <div class="feature-item left top30 bottom30 wow fadeInUp" data-wow-delay="350ms">
+                            <a href="/report/{{profile.id}}{{profile.user}}/report_user"<span class="icon"><i class="fa fa-edit"></i></span></a>
+                       <div class="text">
+                          <h4>Report</h4>
+                          <p>Report this User </p>
+                       </div>
+                    </div>
+
+                    {% else %}
+                    <div class="feature-item left top30 bottom30 wow fadeInUp" data-wow-delay="300ms">
+                            <a href="{{ profile.like_link }}" <span class="icon"><i class="	fa fa-thumbs-o-up"></i></span></a>
+                             <div class="text">
+                                <h4>Like</h4>
+                                <p>Meet like-minded women, men and couples looking for casual dating encounters.</p>
+                             </div>
+                          </div>
+                          <div class="feature-item left top30 bottom30 wow fadeInUp" data-wow-delay="350ms">
+                                <a href="/report/{{profile.id}}{{profile.user}}/report_user"<span class="icon"><i class="fa fa-edit"></i></span></a>
+                           <div class="text">
+                              <h4>Report</h4>
+                              <p>Report this User </p>
+                           </div>
+                        </div>
+                    {% endif %}
+                    {% endif %} 
+                    {% if profile.user == request.user %}
+                    <div class="feature-item left top30 bottom30 wow fadeInUp" data-wow-delay="350ms">
+                            <a href="/profile/{{profile.user}}/edit"<span class="icon"><i class="fa fa-cog"></i></span></a>
+                       <div class="text">
+                          <h4>Edit Profile</h4>
+                          <p>Let us know about yourself </p>
+                       </div>
+                    </div>
+
+                    <div class="feature-item left top30 bottom30 wow fadeInUp" data-wow-delay="350ms">
+                        <a href="/profile/{{profile.user}}/prefrences"<span class="icon"><i class="fa fa-edit"></i></span></a>
+                   <div class="text">
+                      <h4>Food Prefrencess</h4>
+                      <p>Tell me about your eating habit </p>
+                   </div>
+                </div>
+                    {% endif %}
+
+
+
+
+
+
+                 </div>
+              </div>
+
+              <section id="our-portfolio" class="bglight padding">
+
+                    <div class="cbp-item web logo">
+                            <img src="{{profile.picture.url}}" height="400" width="500" alt="">
+                            <div class="overlay center-block whitecolor">
+                               <a class="plus" data-fancybox="gallery" href="{{profile.picture.url}}"></a>
+
+                            </div>
+                         </div>
+            </section>
+              <div class="col-lg-2 col-md-4 col-sm-12">
+                 <div class="content-right clearfix">
+                    <div class="feature-item left top30 bottom30 wow fadeInUp" data-wow-delay="300ms">
+                    </div>
+                    {% if profile.user == request.user %}
+
+                    {% endif %}
+                    <p>Location: {{profile.location}}</p>
+                    <p>Age: {{profile.age}}</p>
+                    <p>Sex: {{profile.sex}}</p>
+                    <p>First Name: {{profile.user.first_name}}</p>
+                    <p>Last Name: {{profile.user.last_name}}</p>
+                    <p>Ethnicity: {{profile.ethnicity}}</p>
+                    <p>Description: {{profile.description}}</p>
+                 </div>
+
+              </div>
+           </div>
+        </div>
+
+     </section>                                                     
+     
 </div>
+</div>
+
+
 {% endblock %}

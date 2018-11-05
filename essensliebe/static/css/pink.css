@@ -1,0 +1,463 @@
+/*Global Styling*/
+body {
+    font-family: 'Raleway', sans-serif;
+    color: #a5a5a5;
+}
+
+/*common font family*/
+p, .heading-title > span, .process-wrapp li > .pro-step,
+.progress-bars .progress p, .progress-bars .progress .progress-bar span, .counters .count_nums{
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Helper Classes & Shorcodes */
+.bglight {
+    background: #f6f6f6;
+}
+.whitecolor {
+    color: #ffffff;
+}
+.darkcolor {
+    color: #212331;
+}
+section{
+    position: relative;
+}
+.gradient_bg{
+    background: #ef233c;
+    background-image: linear-gradient(to right, rgb(53, 204, 241) , rgb(56, 116, 194), rgb(10, 32, 107) );
+}
+.gradient_bg_default{
+    background: #212331;
+}
+
+/*heading Titles */
+.heading-title > span{
+    color: #ef233c;
+}
+.whitecolor.heading-title > span{
+    color: #fff;
+}
+ /*hover on images*/
+
+/*Back To Top*/
+
+/* ----- Social Icons ----- */
+
+
+
+/*-----Buttons-----*/
+.btnprimary{
+    background: #212331;
+}
+.btnsecondary{
+   background: #ef233c; 
+}
+.btnprimary:hover, .btnprimary:focus{
+   background: #ef233c;
+   border: 1px solid #ef233c;
+}
+
+.btnsecondary:hover, .btnsecondary:focus {
+   background: #212331;
+   border: 1px solid #212331;
+}
+
+
+.btnprimary, .btnsecondary,
+.btnprimary:hover, .btnprimary:focus,
+.btnsecondary:hover, .btnsecondary:focus{
+   color: #fff;
+}
+
+
+/*-------------------------------*/
+    /*Navigation Starts */
+/*-------------------------------*/
+.bg-white {
+   background: #fff;
+}
+.navbar-nav .nav-link {
+   color: #212331;
+}
+.navbar-nav .nav-link.active {
+    background: #ef233c;
+    color: #fff;
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+   color: #ef233c;
+}
+
+  
+/*toggle responsive*/
+.navbar-toggler span {
+   background: #fff;
+}
+.bg-white .navbar-toggler span {
+   background: #212331;
+}
+.navbar-toggler:not(.collapsed) span:nth-child(2) {
+    background-color: transparent;
+}
+
+
+/*-----Side Menu----*/
+.side-menu {
+	background: #212331;
+}
+
+/*Side overlay*/
+
+/*side clode btn*/
+.side-menu .btn-close::before, .side-menu .btn-close::after {
+	background: #fff;
+}
+
+/*side open btn*/
+.side-nav .navbar-nav .nav-link {
+	color: #fff;
+}
+.side-nav .navbar-nav .nav-link::after{
+   background: #fff;
+}
+.side-nav .navbar-nav .nav-link.active {
+   background: transparent;  
+}
+
+/*-------------------------------*/
+    /*Navigation Ends */
+/*-------------------------------*/	
+
+
+/*-------------------------------*/
+    /*OWl Slider*/
+/*-------------------------------*/
+/*Dots*/
+
+/*Buttons*/
+
+/*Service Slider*/
+
+/*-------------------------------*/
+    /*OWL Slider ends*/
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+      /*Revolution SLider*/
+/*-------------------------------*/
+
+/*-------------------------------*/
+/* Main Banner Ends*/
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Horizontal Half Blocks*/
+/*-------------------------------*/
+
+/*-------------------------------*/
+    /*Horizontal Half Blocks ends*/
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /*Page Headers */
+/*-------------------------------*/
+/*-------------------------------*/
+    /*Page Headers */
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Work Process */
+/*-------------------------------*/
+.process-wrapp li > .pro-step {
+   border: 1px solid #fff;
+   color: #fff;
+}
+.process-wrapp li:hover > .pro-step {
+   -webkit-box-shadow: 0 0 25px 50px #fff inset;
+   box-shadow: 0 0 25px 50px #fff inset;
+   color: #212331;
+}
+.process-wrapp li::before, .process-wrapp li::after {
+    background: rgba(255,255,255, .5);
+}
+
+/*process with box */
+/*-------------------------------*/
+    /*Work Process ends */
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Our Team */
+/*-------------------------------*/
+.team-box::before {
+   border: 20px solid #fff;
+}
+.team-box.no-hover .team-content { 
+   -webkit-box-shadow: 0px 10px 5px -10px #b7b7b7;
+   box-shadow: 0px 10px 5px -10px #b7b7b7;
+   background: #fff;
+}
+.team-box.no-hover .team-content h3 {
+   color: #212331;
+}
+.team-box.no-hover .team-content::before {
+   background: #ef233c;
+}
+.team-box.no-hover:hover .team-content::before,
+.team-box.no-hover:hover .team-content,
+.team-box.no-hover:hover .team-content h3  {
+   color: #fff;
+}
+
+/*Progress Bars*/
+.progress-bars .progress .progress-bar {
+    background: -webkit-linear-gradient(90deg, #f6663f 31%, #ed145b 69%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(31%, #f6663f), color-stop(69%, #ed145b));
+    background: -webkit-linear-gradient(left, #f6663f 31%, #ed145b 69%);
+    background: -o-linear-gradient(left, #f6663f 31%, #ed145b 69%);
+    background: linear-gradient(90deg, #f6663f 31%, #ed145b 69%);
+}
+/*-------------------------------*/
+    /*Our Team ends */
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Gallery Portfolio */
+/*-------------------------------*/
+/*filters*/
+
+/*Overlays*/
+.overlay {
+   background: rgba(239, 35, 60, .9);
+}
+.overlay > .plus::before,
+.overlay > .plus::after {
+   background: #fff;
+}
+
+/*Single Porfolio*/
+/*-------------------------------*/
+    /*Gallery ends */
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Mobile Apps & Features */
+/*-------------------------------*/
+/*apps background*/
+
+/*app features*/
+.feature-item h4 {
+	color: #222222;
+}
+.feature-item .icon {
+	background: #212331;
+	color: #fff;
+}
+.feature-item .icon::before {
+	background: transparent;
+	border: 4px solid #fff;
+}
+
+#app-feature .feature-item:hover .icon {
+   background: #ef233c;
+}
+.feature-item:hover .icon { 
+	-webkit-box-shadow: 0 0 0 0 rgba(239, 35, 60, 1);
+	box-shadow: 0 0 0 0 rgba(239, 35, 60, 1);
+}
+@-webkit-keyframes itg_pulse {
+    0% {
+        -webkit-box-shadow: 0 0 0 5px rgba(239, 35, 60, 0.9);
+        box-shadow: 0 0 0 5px rgba(239, 35, 60, 0.9);
+    }
+    25% {
+        -webkit-box-shadow: 0 0 0 10px rgba(239, 35, 60, 0.6);
+        box-shadow: 0 0 0 10px rgba(239, 35, 60, 0.6);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 15px rgba(239, 35, 60, 0.3);
+        box-shadow: 0 0 0 15px rgba(239, 35, 60, 0.3);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 60px rgba(239, 35, 60, 0.1);
+        box-shadow: 0 0 0 20px rgba(239, 35, 60, 0.1);
+    }
+}
+@-o-keyframes itg_pulse {
+    0% {
+        box-shadow: 0 0 0 5px rgba(239, 35, 60, 0.9);
+    }
+    25% {
+        box-shadow: 0 0 0 10px rgba(239, 35, 60, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(239, 35, 60, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 0 20px rgba(239, 35, 60, 0.1);
+   }
+}
+@keyframes itg_pulse {
+    0% {
+        -webkit-box-shadow: 0 0 0 5px rgba(239, 35, 60, 0.9);
+        box-shadow: 0 0 0 5px rgba(239, 35, 60, 0.9);
+    }
+    25% {
+        -webkit-box-shadow: 0 0 0 10px rgba(239, 35, 60, 0.6);
+        box-shadow: 0 0 0 10px rgba(239, 35, 60, 0.6);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 15px rgba(239, 35, 60, 0.3);
+        box-shadow: 0 0 0 15px rgba(239, 35, 60, 0.3);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 60px rgba(239, 35, 60, 0.1);
+        box-shadow: 0 0 0 20px rgba(239, 35, 60, 0.1);
+   }
+}
+.feature-item.active {
+   background: #f7f7f7;
+}
+/*-------------------------------*/
+    /*Mobile Apps ends */
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Counters */
+/*-------------------------------*/
+.fact-iconic h3::after {
+   background: #ffffff;
+}
+/*-------------------------------*/
+    /*Counters ends */
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Pricings */
+/*-------------------------------*/
+/*-------------------------------*/
+    /* Pricings ends */
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /*Backgrounds Parallax */
+/*-------------------------------*/
+
+/*banner parallax*/
+
+/*Background Video*/
+/*-------------------------------*/
+    /*Backgrounds Parallax ends */
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Testimonials*/
+/*-------------------------------*/
+
+/*Testimonial Quotes*/
+/*-------------------------------*/
+    /* Testimonials ends*/
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Partner/ Logo's*/
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Partner/ Logo's ends*/
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Our Blog*/
+/*-------------------------------*/
+
+/*Pagination*/
+
+/*Post Comments*/
+
+/*Widget Newlatter or search*/
+
+/*web Tags*/
+/*Recent Sidebar*/
+
+/*Categories*/
+/*-------------------------------*/
+    /* Our Blog ends*/
+/*-------------------------------*/
+
+/*-------------------------------*/
+    /* Ccntact US*/
+/*-------------------------------*/
+.our-address h5 {
+	color: #222;
+}
+
+/*Contact Form*/
+
+/*CheckBox*/
+.form-group label {
+	color: #a5a5a5;
+}
+.log-meta > a:hover, .log-meta > a:focus {
+   color: #ef233c;
+}
+
+/* Form general- */
+::-webkit-input-placeholder {
+   color: #a5a5a5;
+}
+:-moz-placeholder {
+   /* Firefox 18- */
+   color: #a5a5a5;
+}
+::-moz-placeholder {
+   /* Firefox 19+ */
+   color: #a5a5a5;
+}
+:-ms-input-placeholder {
+   color: #a5a5a5;
+}
+/*-------------------------------*/
+    /*  COntact US */
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /* Footer*/
+/*-------------------------------*/
+footer .copyrights > a:hover,
+footer .copyrights > a:focus {
+   color: #212331;
+}
+/*-------------------------------*/
+    /* Footer ends*/
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+    /*PreLoader*/
+/*-------------------------------*/
+.loader {
+  background:#fff;
+}
+.loader span {
+   background: #212331;
+}
+/*-------------------------------*/
+      /*Loader ends*/
+/*-------------------------------*/
